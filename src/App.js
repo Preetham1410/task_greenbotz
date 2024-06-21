@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import SideNav from './sidenav';
+import Content from './content';
 
 function App() {
+  const [sidebarShow, setSidebarShow] = useState(false);
+
+  var sidebar = () => {
+    (sidebarShow === false) ? setSidebarShow(true) : setSidebarShow(false)
+    console.log(sidebarShow)
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>
+          <button onClick={sidebar} className='menubar'><i className="fa fa-bars"></i></button>
+          <h4>Nanyang polytechnic</h4>
+        </div>
+        <div>
+        <i className='fa fa-user'></i>
+        </div>
       </header>
+
+      {sidebarShow && <SideNav/>}
+      <Content/>
     </div>
   );
 }
